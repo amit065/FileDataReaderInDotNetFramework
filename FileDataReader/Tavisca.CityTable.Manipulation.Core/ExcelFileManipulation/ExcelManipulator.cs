@@ -9,6 +9,7 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
     public class ExcelManipulator
     {
 
+        //Get the Full text search from city table
         public  string GetFullTextSearch(string cityName, string IataCityCode)
         {
             string textSearch = IataCityCode != null ? IataCityCode : string.Empty;

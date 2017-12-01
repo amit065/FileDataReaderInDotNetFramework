@@ -13,14 +13,21 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
     {
         public bool ExportToExcel(List<City> cities)
         {
+            // Load Excel application
             Excel.Application excel = new Excel.Application();
 
+            // Load Excel application
             excel.Workbooks.Add();
 
+            // Create Worksheet from active sheet
             Excel._Worksheet workSheet = excel.ActiveSheet;
+
+            // I created Application and Worksheet objects before try/catch,
+            // so that i can close them in finnaly block.
+            // It's IMPORTANT to release these COM objects!!
             try
             {
-
+                // Creation of header cells
                 workSheet.Cells[1, "A"] = "CityName";
                 workSheet.Cells[1, "B"] = "StateCode";
                 workSheet.Cells[1, "C"] = "CountryCode";
@@ -30,6 +37,7 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
                 workSheet.Cells[1, "G"] = "IataCityCode";
                 workSheet.Cells[1, "H"] = "FullTextColumn";
 
+                // Populate sheet with some real data from "city" list
                 int row = 1;
                 foreach (City city in cities)
                 {
@@ -45,9 +53,13 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
                     row++;
                 }
 
+                // Apply some predefined styles for data to look nicely :)
                 workSheet.Range["A1"].AutoFormat(Excel.XlRangeAutoFormat.xlRangeAutoFormatClassic1);
 
+                // Define filename
                 string fileName = string.Format(@"{0}\ExcelCityData.xlsx", Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+
+                // Save this data as a file
                 workSheet.SaveAs(fileName);
                 return true;
             }

@@ -10,10 +10,12 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
 {
     public class ScriptGenerator
     {
+        //Get insert script for city table 
         public void GenerateInsertScript(List<City> cities)
         {
             try
             {
+                // Define filename where to save the City insert script
                 using (StreamWriter writer = new StreamWriter(@"C:\Users\aprakash\Desktop\CityScript.txt", false))
                 {
 

@@ -21,11 +21,17 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
 
         public List<City> ReadCityFromExcelFile(string filePath)
         {
+            // Load Excel application
             Excel.Application xlApp = new Excel.Application();
             try
             {
+                // Open the Excel file
                 Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(filePath);
+
+                // Get the first worksheet
                 Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+
+                // Get the range of cells which has data.
                 Excel.Range xlRange = xlWorksheet.UsedRange;
                 int row = xlRange.Rows.Count;
                 int columnl = xlRange.Columns.Count;
@@ -33,6 +39,8 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
                 List<City> cities = new List<City>();
                 ExcelManipulator excelManipulator = new ExcelManipulator();
 
+                // iterate through each cell
+                //excel is not zero based!!
                 for (int i = 1; i <= row; i++)
                 {
                     cities.Add(new City
@@ -58,6 +66,7 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
                 // Quit Excel application
                 xlApp.Quit();
 
+ 
                 // Release COM objects ()
                 if (xlApp != null)
                 Marshal.ReleaseComObject(xlApp);
