@@ -12,7 +12,7 @@ namespace Tavisca.CityTable.Manipulation.Core.Test
         {
             string filePath = @"C:\Users\aprakash\Desktop\CLTS_Cities_Data.xlsx";
             ExcelReader excelReader = new ExcelReader(filePath);
-            var cities = excelReader.ReadCityFromExcelFile(filePath);
+            var cities = excelReader.Read(filePath);
             ScriptGenerator scriptGenerator = new ScriptGenerator();
             Assert.ThrowsException<Exception>(() => scriptGenerator.GenerateInsertScript(cities));
 

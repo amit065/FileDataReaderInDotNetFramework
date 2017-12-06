@@ -14,7 +14,7 @@ namespace Tavisca.CityTable.Manipulation.Core.Test
             
             string filePath = @"C:\Users\aprakash\Desktop\CLTS_Cities_Data.xlsx";
             ExcelReader excelReader = new ExcelReader(filePath);
-            var cities = excelReader.ReadCityFromExcelFile(filePath);
+            var cities = excelReader.Read(filePath);
             Assert.IsNotNull(cities);
 
         }
@@ -24,7 +24,7 @@ namespace Tavisca.CityTable.Manipulation.Core.Test
         {
             string filePath = @"C:\Users\aprakash\Desktop\CLTS_Cities.xlsx";
             ExcelReader excelReader = new ExcelReader(filePath);
-            var exception = Assert.ThrowsException<Exception>(() => excelReader.ReadCityFromExcelFile(filePath));
+            var exception = Assert.ThrowsException<Exception>(() => excelReader.Read(filePath));
             Assert.AreEqual("File Not Found", exception.Message);
         }
     }

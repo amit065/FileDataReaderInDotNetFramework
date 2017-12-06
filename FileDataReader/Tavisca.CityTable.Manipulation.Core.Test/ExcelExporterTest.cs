@@ -14,7 +14,7 @@ namespace Tavisca.CityTable.Manipulation.Core.Test
         {
             string filePath = @"C:\Users\aprakash\Desktop\CLTS_Cities_Data.xlsx";
             ExcelReader excelReader = new ExcelReader(filePath);
-            List<City> cities = excelReader.ReadCityFromExcelFile(filePath);
+            List<City> cities = excelReader.Read(filePath);
             ExcelExporter excelExporter = new ExcelExporter();
             var result = excelExporter.ExportToExcel(cities);
             Assert.AreEqual(true, result);

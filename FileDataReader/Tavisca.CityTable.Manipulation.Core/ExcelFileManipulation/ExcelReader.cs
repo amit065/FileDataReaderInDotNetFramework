@@ -19,7 +19,7 @@ namespace Tavisca.CityTable.Manipulation.Core.ExcelFileManipulation
            this._filePath = filepath;
         }
 
-        public List<City> ReadCityFromExcelFile(string filePath)
+        public List<City> Read(string filePath)
         {
             // Load Excel application
             Excel.Application xlApp = new Excel.Application();
